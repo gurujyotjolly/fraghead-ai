@@ -1,0 +1,17 @@
+{
+  "name": "Fraghead AI by Gurujyot Singh Jolly",
+  "short_name": "Fraghead AI",
+  "description": "Weather-aware, budget-smart perfume recommendations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f3ff",
+  "theme_color": "#534AB7",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
