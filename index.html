@@ -8,8 +8,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Fraghead AI"/>
-<meta property="og:title" content="Fraghead AI — Your Personal Perfume Oracle"/>
-<meta property="og:description" content="Weather-aware, budget-matched perfume picks with Middle Eastern alternatives. By Gurujyot Singh Jolly."/>
 <link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" href="icon.png"/>
 <title>Fraghead AI</title>
@@ -19,6 +17,7 @@
 :root{--p:#534AB7;--pd:#3C3489;--pl:#EEEDFE;--pk:#D4537E;--pkl:#FBEAF0;--al:#FAEEDA;--gl:#EAF3DE;--gd:#27500A;--bl:#E6F1FB;--bd:#185FA5;--txt:#1a1a2e;--muted:#6b6b8a;--bdr:#e0dff5;--card:#fff;--surface:#f5f3ff}
 @media(prefers-color-scheme:dark){:root{--txt:#ede9ff;--muted:#9590c5;--bdr:#312d58;--card:#1c1930;--surface:#141225;--pl:#252045;--pd:#b0aaee;--bl:#101b2e;--bd:#7baad4;--gl:#0f1e0f;--gd:#8fc97a;--al:#1e160a;--pkl:#2a1020}body{background:linear-gradient(135deg,#0f0d1a,#160d14,#0d0a06)!important}}
 body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(135deg,#f5f3ff,#fdf0f5,#fff8f0);min-height:100vh;max-width:600px;margin:0 auto}
+
 .hero{text-align:center;padding:2.5rem 1.5rem 1.5rem;position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--bdr)}
 .o{position:absolute;border-radius:50%;filter:blur(55px);opacity:.13;pointer-events:none}
 .o1{width:280px;height:280px;background:#534AB7;top:-90px;left:-70px}
@@ -34,12 +33,14 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
 .pill{padding:3px 11px;border-radius:20px;font-size:11px;border:1px solid var(--bdr);color:var(--muted);background:var(--card)}
 #ib{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--p);color:#fff;padding:11px 16px;font-size:12px}
 #ib button{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
-.sbar{display:flex;align-items:center;max-width:380px;margin:1.5rem auto 1.5rem;padding:0 1rem}
+
+.sbar{display:flex;align-items:center;max-width:380px;margin:1.5rem auto;padding:0 1rem}
 .sd{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border:1.5px solid var(--bdr);background:var(--card);color:var(--muted);transition:all .3s;flex-shrink:0}
 .sd.a{background:var(--p);border-color:var(--p);color:#fff;box-shadow:0 0 0 4px rgba(83,74,183,.15)}
 .sd.d{background:var(--pk);border-color:var(--pk);color:#fff}
 .sln{flex:1;height:1.5px;background:var(--bdr);transition:background .3s}
 .sln.d{background:var(--pk)}
+
 .wrap{padding:0 1.25rem 2rem}
 .pnl{display:none;animation:si .3s ease}.pnl.a{display:block}
 @keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -77,10 +78,69 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
 .bnt:disabled{opacity:.4;cursor:not-allowed}
 .bfn{flex:1;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--p),var(--pk));color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2px}
 .bfn:disabled{opacity:.4;cursor:not-allowed}
-.ok{background:var(--gl);border:1.5px solid #639922;border-radius:14px;padding:18px;margin-top:1.25rem;text-align:center;font-size:13px;color:var(--gd);line-height:1.9}
-.ok strong{display:block;font-size:16px;margin-bottom:5px;font-weight:500}
-.arr{font-size:24px;display:block;margin-top:6px;animation:bo .9s ease-in-out infinite}
-@keyframes bo{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+.loading{display:none;text-align:center;padding:3.5rem 1.25rem}
+.loading.show{display:block}
+.lorbs{display:flex;justify-content:center;gap:10px;margin-bottom:1.25rem}
+.lorb{width:13px;height:13px;border-radius:50%;background:var(--p);animation:lp 1.2s ease-in-out infinite}
+.lorb:nth-child(2){background:var(--pk);animation-delay:.2s}
+.lorb:nth-child(3){background:#EF9F27;animation-delay:.4s}
+@keyframes lp{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.2);opacity:1}}
+.lt{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--pd);margin-bottom:6px}
+.lsub{font-size:12px;color:var(--muted);margin-bottom:1.5rem}
+.lsteps{text-align:left;max-width:260px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.lstep{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);opacity:.3;transition:opacity .5s}
+.lstep.on{opacity:1;color:var(--p);font-weight:500}
+.lstep.done{opacity:.6;color:var(--gd)}
+
+.result{display:none;padding:0 1.25rem 1.5rem}
+.result.show{display:block;animation:si .5s ease}
+.rcard{border-radius:18px;overflow:hidden;box-shadow:0 6px 30px rgba(83,74,183,.14);margin-bottom:1.25rem}
+.rh{background:linear-gradient(135deg,var(--pd),var(--p) 55%,var(--pk));padding:1.5rem;color:#fff;position:relative;overflow:hidden}
+.rdeco{position:absolute;right:-8px;top:-12px;font-size:70px;opacity:.07;pointer-events:none}
+.rhouse{display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;padding:3px 12px;font-size:11px;letter-spacing:.4px;margin-bottom:8px}
+.rname{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;line-height:1.2;margin-bottom:5px}
+.rmeta{font-size:11px;opacity:.8;display:flex;gap:7px;flex-wrap:wrap}
+.rmeta span{background:rgba(255,255,255,.15);padding:2px 9px;border-radius:9px}
+.rb{background:var(--card);padding:1.25rem}
+.wrow{display:flex;align-items:flex-start;gap:9px;background:var(--bl);border-radius:11px;padding:10px 13px;margin-bottom:1rem;font-size:13px;color:var(--bd);line-height:1.5}
+.ng{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:1rem}
+.nb{background:var(--pl);border-radius:11px;padding:9px;text-align:center}
+.nl{font-size:9px;font-weight:500;color:var(--p);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
+.nv{font-size:11px;color:var(--pd);line-height:1.4}
+.verdict{background:var(--pkl);border-radius:11px;padding:11px 13px;margin-bottom:1rem;font-size:13px;color:#72243E;line-height:1.6;border-left:3px solid var(--pk)}
+.sg2{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:1rem}
+.sb{background:var(--al);border-radius:11px;padding:9px 7px;text-align:center}
+.sl2{font-size:9px;font-weight:500;color:#854F0B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.sv{font-size:12px;color:#412402;line-height:1.3}
+.tip{background:var(--gl);border-radius:11px;padding:11px 13px;margin-bottom:1rem;font-size:13px;color:var(--gd);line-height:1.6;border-left:3px solid rgba(99,153,34,.5)}
+.divider{height:1px;background:var(--bdr);margin:1rem 0}
+.sh{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.pl{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.pr{display:flex;border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden;background:var(--card)}
+.pnum{width:40px;min-width:40px;background:var(--pl);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--p)}
+.pb{padding:12px 14px;flex:1}
+.pn{font-size:14px;font-weight:500;color:var(--pd);margin-bottom:2px}
+.ph2{font-size:12px;color:var(--muted);margin-bottom:5px}
+.pr2{display:flex;gap:7px;align-items:center;margin-bottom:4px;flex-wrap:wrap}
+.pprice{font-size:11px;font-weight:500;color:var(--gd);background:var(--gl);padding:2px 8px;border-radius:7px}
+.ptime{font-size:11px;color:var(--muted)}
+.preason{font-size:12px;line-height:1.5;color:var(--txt)}
+.ml2{display:flex;flex-direction:column;gap:10px;margin-bottom:1rem}
+.mr{display:flex;border:1.5px solid #c8a96e;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#fffaf0,#fff5e0)}
+@media(prefers-color-scheme:dark){.mr{background:linear-gradient(135deg,#1e1508,#17100a)}}
+.mnum{width:40px;min-width:40px;background:#faeeda;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#854F0B}
+.mb{padding:12px 14px;flex:1}
+.mn{font-size:14px;font-weight:500;color:#633806;margin-bottom:2px}
+.mh{font-size:12px;color:#854F0B;margin-bottom:4px}
+.mr2{display:flex;gap:7px;align-items:center;margin-bottom:4px;flex-wrap:wrap}
+.mbadge{font-size:10px;color:#fff;background:#854F0B;padding:2px 8px;border-radius:6px}
+.mprice{font-size:11px;font-weight:500;color:var(--gd);background:var(--gl);padding:2px 8px;border-radius:7px}
+.mnote{font-size:12px;color:#633806;line-height:1.5}
+.again{width:100%;padding:14px;border-radius:13px;border:none;background:var(--p);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;margin-top:.5rem;transition:background .2s}
+.again:hover{background:var(--pd)}
+.errmsg{background:#FCEBEB;border-radius:13px;padding:16px;font-size:13px;color:#A32D2D;margin-bottom:1rem;line-height:1.7}
+
 .sig{text-align:center;padding:3rem 1.5rem 2.5rem}
 .sig-line{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin-bottom:2rem}
 .sn{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--pd);letter-spacing:.5px;margin-bottom:5px}
@@ -132,7 +192,7 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
   </div>
 </div>
 
-<div class="sbar">
+<div class="sbar" id="sbar">
   <div class="sd a" id="sd1">1</div><div class="sln" id="sl1"></div>
   <div class="sd" id="sd2">2</div><div class="sln" id="sl2"></div>
   <div class="sd" id="sd3">3</div><div class="sln" id="sl3"></div>
@@ -140,6 +200,7 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
   <div class="sd" id="sd5">5</div>
 </div>
 
+<div id="formArea">
 <div class="wrap">
 
 <div class="pnl a" id="s1">
@@ -158,13 +219,13 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
 </div>
 
 <div class="pnl" id="s2">
-  <div class="ph"><h2>Which city are you in?</h2><p>Mumbai humidity and Delhi dry heat need very different fragrances — we check live weather before recommending</p></div>
+  <div class="ph"><h2>Which city are you in?</h2><p>Mumbai humidity and Delhi dry heat need very different fragrances — we factor in your city's climate</p></div>
   <div class="cw"><span class="cion">📍</span><input class="ci" id="cI" type="text" placeholder="e.g. Mumbai, Delhi, Bangalore, Pune..." oninput="cC()"/></div>
   <div class="br"><button class="bbk" onclick="gS(1)">← Back</button><button class="bnt" id="n2" onclick="gS(3)" disabled>Continue →</button></div>
 </div>
 
 <div class="pnl" id="s3">
-  <div class="ph"><h2>When will you wear it?</h2><p>Select all that apply — we'll find something that works across your day</p></div>
+  <div class="ph"><h2>When will you wear it?</h2><p>Select all that apply — we'll find something versatile across your day</p></div>
   <div class="mg c2">
     <div class="mc" data-v="Early morning (6–9am)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">🌅</span><div><div class="ml">Early morning</div><div class="ms">6–9 am</div></div></div>
     <div class="mc" data-v="Morning (9am–12pm)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">☀️</span><div><div class="ml">Morning</div><div class="ms">9am–12pm</div></div></div>
@@ -203,12 +264,34 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
     <button class="bbk" onclick="gS(4)">← Back</button>
     <button class="bfn" id="fB" onclick="find()" disabled>Find my perfect perfume ✦</button>
   </div>
-  <div id="msg"></div>
 </div>
 
 </div>
+</div>
 
-<div class="sig">
+<!-- LOADING SCREEN -->
+<div class="loading" id="loadingArea">
+  <div class="lorbs"><div class="lorb"></div><div class="lorb"></div><div class="lorb"></div></div>
+  <div class="lt">Consulting the oracle...</div>
+  <div class="lsub">Checking weather · Searching fragrances · Crafting your card</div>
+  <div class="lsteps">
+    <div class="lstep" id="ls1">🌡️ Analysing your city's climate...</div>
+    <div class="lstep" id="ls2">🔍 Searching fragrance databases...</div>
+    <div class="lstep" id="ls3">🕌 Finding Middle Eastern alternatives...</div>
+    <div class="lstep" id="ls4">✨ Building your scent card...</div>
+  </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div class="result" id="resultArea">
+  <div id="resultContent"></div>
+  <div style="padding:0 0 1.5rem">
+    <button class="again" onclick="reset()">✦ Try another combination</button>
+  </div>
+</div>
+
+<!-- SIGNATURE -->
+<div class="sig" id="sigArea">
   <div class="sig-line"></div>
   <div class="sn">Gurujyot Singh Jolly</div>
   <div class="st">Fraghead · Collector · Curator</div>
@@ -217,9 +300,26 @@ body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(
 </div>
 
 <script>
+// ====================================================
+// STEP 1: PASTE YOUR FREE GROQ API KEY BELOW
+// Get it free at: console.groq.com
+// Replace YOUR_GROQ_KEY_HERE with your actual key
+// ====================================================
+var GROQ_KEY = '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';
+// ====================================================
+
 var D={occ:'',city:'',times:[],scents:[],skip:false,budgets:[]},cur=1,dp=null;
-window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('ib').style.display='flex';});
-function installApp(){if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;document.getElementById('ib').style.display='none';});}
+
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();dp=e;
+  document.getElementById('ib').style.display='flex';
+});
+function installApp(){
+  if(!dp)return;
+  dp.prompt();
+  dp.userChoice.then(function(){dp=null;document.getElementById('ib').style.display='none';});
+}
+
 function gS(n){
   document.getElementById('s'+cur).classList.remove('a');
   document.getElementById('s'+n).classList.add('a');
@@ -231,10 +331,19 @@ function gS(n){
     else d.textContent=i;
     if(i<5)document.getElementById('sl'+i).classList.toggle('d',i<n);
   }
-  cur=n;window.scrollTo({top:0,behavior:'smooth'});
+  cur=n;
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-function sO(el){document.querySelectorAll('#s1 .oc').forEach(function(c){c.classList.remove('s');});el.classList.add('s');D.occ=el.dataset.v;document.getElementById('n1').disabled=false;}
-function cC(){D.city=document.getElementById('cI').value.trim();document.getElementById('n2').disabled=D.city.length<2;}
+
+function sO(el){
+  document.querySelectorAll('#s1 .oc').forEach(function(c){c.classList.remove('s');});
+  el.classList.add('s');D.occ=el.dataset.v;
+  document.getElementById('n1').disabled=false;
+}
+function cC(){
+  D.city=document.getElementById('cI').value.trim();
+  document.getElementById('n2').disabled=D.city.length<2;
+}
 function tM(el,k){
   el.classList.toggle('s');
   var pid=k==='t'?'s3':'s5';
@@ -248,18 +357,172 @@ function tSc(el){
   document.getElementById('n4').disabled=(D.scents.length===0&&!D.skip);
 }
 function tSk(){
-  D.skip=!D.skip;document.getElementById('skpBtn').classList.toggle('on',D.skip);
+  D.skip=!D.skip;
+  document.getElementById('skpBtn').classList.toggle('on',D.skip);
   if(D.skip){document.querySelectorAll('#s4 .sc').forEach(function(c){c.classList.remove('s');});D.scents=[];}
   document.getElementById('n4').disabled=(D.scents.length===0&&!D.skip);
 }
-function find(){
-  var sp=D.skip||D.scents.length===0?'No preference — use your expert judgement':D.scents.join(', ');
-  document.getElementById('fB').disabled=true;
-  document.getElementById('msg').innerHTML='<div class="ok"><strong>✦ Opening Claude AI now!</strong>Your complete request is ready — just press Enter in the new tab that opens.<span class="arr">↓</span></div>';
-  var p='[FRAGHEAD_REQUEST]\n\nYou are a world-class master perfumer with 30 years of experience and a passionate collector who has tested over 5,000 fragrances. You write with warmth, precision, and deep expertise.\n\nSTEP 1: Use web_search to find today\'s ACTUAL weather and temperature in "'+D.city+'" right now.\nSTEP 2: Use web_search to find real, currently available fragrances on Indian sites (Nykaa, Sephora India, brand websites).\n\nUSER PROFILE:\n- Occasion: '+D.occ+'\n- City: '+D.city+'\n- Time(s) of day: '+D.times.join(', ')+'\n- Scent preference: '+sp+'\n- Budget: '+D.budgets.join(' and ')+' INR\n\nRULES:\n- All perfumes MUST be real and currently available in India\n- Designer picks MUST be within the stated budget\n- Factor in ACTUAL weather — heat amplifies heavy scents, humidity kills longevity\n- Middle Eastern alternatives must be available in India (Noon.com, Amazon India, local attar shops)\n- Be specific and expert — not generic\n\nFORMAT YOUR REPLY EXACTLY LIKE THIS:\n\n━━━━━━━━━━━━━━━━━━━━━━━\n⭐ STAR PICK\n━━━━━━━━━━━━━━━━━━━━━━━\n**[Name]** by [House]\nFamily: [x] | Season: [x]\nTop: [notes] | Heart: [notes] | Base: [notes]\nLongevity: [x hrs] | Sillage: [x] | Price: ₹[x]\n\n🎯 Why this: [One expert sentence — specific to occasion + city weather + time of day]\n🌡️ Weather today: [Actual weather you found + how it affects fragrance performance]\n🏛️ Collector tip: [One insider tip — batch year, reformulation, layering or application hack]\n\n━━━━━━━━━━━━━━━━━━━━━━━\n🛍️ 3 DESIGNER PICKS — '+D.budgets.join(' + ')+'\n━━━━━━━━━━━━━━━━━━━━━━━\n1. **[Name]** by [House] — ₹[price] | [Best time] | [Why it works for this person]\n2. **[Name]** by [House] — ₹[price] | [Best time] | [Why]\n3. **[Name]** by [House] — ₹[price] | [Best time] | [Why]\n\n━━━━━━━━━━━━━━━━━━━━━━━\n🕌 3 MIDDLE EASTERN ALTERNATIVES\nSame soul. Fraction of the price.\n━━━━━━━━━━━━━━━━━━━━━━━\n1. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA similarity + where to buy in India]\n2. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA + where to buy]\n3. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA + where to buy]';
-  window.open('https://claude.ai/new?q='+encodeURIComponent(p),'_blank');
+
+function animLoad(){
+  var ids=['ls1','ls2','ls3','ls4'];
+  ids.forEach(function(id,i){
+    setTimeout(function(){
+      if(i>0)document.getElementById(ids[i-1]).className='lstep done';
+      var el=document.getElementById(id);
+      if(el)el.className='lstep on';
+    },i*1600);
+  });
 }
-if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+
+function showErr(msg){
+  document.getElementById('loadingArea').classList.remove('show');
+  document.getElementById('resultArea').classList.add('show');
+  document.getElementById('resultContent').innerHTML='<div class="errmsg">⚠️ '+msg+'<br><br>Please check your Groq API key in index.html and try again.</div>';
+  document.getElementById('sigArea').style.display='block';
+}
+
+async function find(){
+  if(GROQ_KEY==='YOUR_GROQ_KEY_HERE'){
+    alert('Please add your Groq API key in index.html where it says YOUR_GROQ_KEY_HERE');
+    return;
+  }
+  var sp=D.skip||D.scents.length===0?'No preference — use your expert judgement to pick the best scent family':D.scents.join(', ');
+
+  // Hide form, show loading
+  document.getElementById('formArea').style.display='none';
+  document.getElementById('sbar').style.display='none';
+  document.getElementById('sigArea').style.display='none';
+  document.getElementById('loadingArea').classList.add('show');
+  animLoad();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  var systemPrompt='You are a world-class master perfumer with 30 years of experience and a passionate fragrance collector who has tested over 5,000 perfumes. You have deep knowledge of Indian city climates, seasonal fragrance behaviour, and the Middle Eastern attar/clone market. You are expert, warm, precise and never generic. You always recommend REAL, currently available fragrances.';
+
+  var userPrompt='Recommend the perfect perfume for this person. Use your expert knowledge of '+D.city+'\'s climate in the current season.\n\nUser profile:\n- Occasion: '+D.occ+'\n- City: '+D.city+'\n- Time(s) of day: '+D.times.join(', ')+'\n- Scent preference: '+sp+'\n- Budget: '+D.budgets.join(' and ')+' INR\n\nIMPORTANT RULES:\n1. All perfumes must be REAL brands available in India\n2. Designer picks must be within the stated budget\n3. Factor in '+D.city+'\'s typical seasonal climate — heat, humidity, dryness all matter\n4. Middle Eastern alternatives must be available in India via Noon.com, Amazon India, or local attar shops\n5. Be specific, opinionated and expert\n\nRespond ONLY with valid JSON. No markdown. No explanation outside the JSON. Use this exact format:\n{"star":{"name":"exact perfume name","house":"brand name","family":"fragrance family","top":"top notes","mid":"heart notes","base":"base notes","price":"approximate INR price","longevity":"X-Y hours","sillage":"Soft/Moderate/Strong/Enormous","season":"best season(s)","verdict":"one sharp expert sentence — why this is THE pick for this specific occasion, city climate, and time of day"},"weather":"one vivid expert sentence about '+D.city+'\'s typical climate right now and exactly how it shapes this recommendation","tip":"one specific insider collector tip about this fragrance — batch year, reformulation warning, layering suggestion, or application technique","designers":[{"name":"perfume name","house":"brand","price":"INR price","times":"best time(s) to wear","why":"one expert sentence why this suits their profile"},{"name":"","house":"","price":"","times":"","why":""},{"name":"","house":"","price":"","times":"","why":""}],"me":[{"name":"ME perfume name","house":"ME house name","inspo":"the designer perfume it references","price":"INR price range","note":"one sentence on scent similarity and exactly where to buy in India"},{"name":"","house":"","inspo":"","price":"","note":""},{"name":"","house":"","inspo":"","price":"","note":""}]}';
+
+  try{
+    var resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer '+GROQ_KEY
+      },
+      body:JSON.stringify({
+        model:'llama-3.3-70b-versatile',
+        temperature:0.7,
+        max_tokens:2000,
+        messages:[
+          {role:'system',content:systemPrompt},
+          {role:'user',content:userPrompt}
+        ]
+      })
+    });
+
+    if(!resp.ok){
+      var errData=await resp.json().catch(function(){return {};});
+      throw new Error(errData.error&&errData.error.message?errData.error.message:'API error '+resp.status);
+    }
+
+    var data=await resp.json();
+    var txt=data.choices&&data.choices[0]&&data.choices[0].message&&data.choices[0].message.content?data.choices[0].message.content:'';
+    if(!txt)throw new Error('Empty response from AI');
+
+    // Extract JSON safely
+    var jsonMatch=txt.match(/\{[\s\S]*\}/);
+    if(!jsonMatch)throw new Error('Could not read AI response');
+    var result=JSON.parse(jsonMatch[0]);
+    showResult(result);
+
+  }catch(err){
+    showErr(err.message||'Something went wrong');
+  }
+}
+
+function showResult(p){
+  document.getElementById('loadingArea').classList.remove('show');
+  var s=p.star||{};
+
+  var dRows=(p.designers||[]).map(function(d,i){
+    return '<div class="pr">'+
+      '<div class="pnum">'+(i+1)+'</div>'+
+      '<div class="pb">'+
+        '<div class="pn">'+(d.name||'')+'</div>'+
+        '<div class="ph2">'+(d.house||'')+'</div>'+
+        '<div class="pr2"><span class="pprice">'+(d.price||'')+'</span><span class="ptime">'+(d.times||'')+'</span></div>'+
+        '<div class="preason">'+(d.why||'')+'</div>'+
+      '</div></div>';
+  }).join('');
+
+  var meRows=(p.me||[]).map(function(c,i){
+    return '<div class="mr">'+
+      '<div class="mnum">'+(i+1)+'</div>'+
+      '<div class="mb">'+
+        '<div class="mn">'+(c.name||'')+'</div>'+
+        '<div class="mh">'+(c.house||'')+'</div>'+
+        '<div class="mr2"><span class="mbadge">Inspired by '+(c.inspo||'')+'</span><span class="mprice">'+(c.price||'')+'</span></div>'+
+        '<div class="mnote">'+(c.note||'')+'</div>'+
+      '</div></div>';
+  }).join('');
+
+  document.getElementById('resultContent').innerHTML=
+    '<div class="rcard">'+
+      '<div class="rh">'+
+        '<div class="rdeco">✦</div>'+
+        '<div class="rhouse">'+(s.house||'')+' · '+(s.family||'')+'</div>'+
+        '<div class="rname">'+(s.name||'')+'</div>'+
+        '<div class="rmeta">'+
+          '<span>'+(s.season||'')+'</span>'+
+          '<span>'+D.occ+'</span>'+
+          '<span>'+(s.price||'')+'</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="rb">'+
+        '<div class="wrow">🌡️ '+(p.weather||'')+'</div>'+
+        '<div class="ng">'+
+          '<div class="nb"><div class="nl">Top notes</div><div class="nv">'+(s.top||'')+'</div></div>'+
+          '<div class="nb"><div class="nl">Heart notes</div><div class="nv">'+(s.mid||'')+'</div></div>'+
+          '<div class="nb"><div class="nl">Base notes</div><div class="nv">'+(s.base||'')+'</div></div>'+
+        '</div>'+
+        '<div class="verdict">🧴 '+(s.verdict||'')+'</div>'+
+        '<div class="sg2">'+
+          '<div class="sb"><div class="sl2">Longevity</div><div class="sv">'+(s.longevity||'')+'</div></div>'+
+          '<div class="sb"><div class="sl2">Sillage</div><div class="sv">'+(s.sillage||'')+'</div></div>'+
+          '<div class="sb"><div class="sl2">Season</div><div class="sv">'+(s.season||'')+'</div></div>'+
+        '</div>'+
+        '<div class="tip">🏛️ '+(p.tip||'')+'</div>'+
+        '<div class="divider"></div>'+
+        '<div class="sh">Designer picks — '+D.budgets.join(' + ')+'</div>'+
+        '<div class="pl">'+dRows+'</div>'+
+        '<div class="divider"></div>'+
+        '<div class="sh">Middle Eastern alternatives</div>'+
+        '<div class="ml2">'+meRows+'</div>'+
+      '</div>'+
+    '</div>';
+
+  document.getElementById('resultArea').classList.add('show');
+  document.getElementById('sigArea').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function reset(){
+  D={occ:'',city:'',times:[],scents:[],skip:false,budgets:[]};cur=1;
+  document.getElementById('resultArea').classList.remove('show');
+  document.getElementById('resultContent').innerHTML='';
+  document.getElementById('formArea').style.display='block';
+  document.getElementById('sbar').style.display='flex';
+  document.getElementById('sigArea').style.display='block';
+  document.querySelectorAll('.oc,.mc,.sc').forEach(function(c){c.classList.remove('s');});
+  document.getElementById('skpBtn').classList.remove('on');
+  document.getElementById('cI').value='';
+  ['n1','n2','n3','n4','fB'].forEach(function(id){document.getElementById(id).disabled=true;});
+  gS(1);
+}
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
