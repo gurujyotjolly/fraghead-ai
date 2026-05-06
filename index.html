@@ -1,17 +1,276 @@
-{
-  "name": "Fraghead AI by Gurujyot Singh Jolly",
-  "short_name": "Fraghead AI",
-  "description": "Weather-aware, budget-smart perfume recommendations",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#f5f3ff",
-  "theme_color": "#534AB7",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#534AB7"/>
+<meta name="description" content="Weather-aware, budget-smart perfume recommendations by Gurujyot Singh Jolly"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Fraghead AI"/>
+<meta property="og:title" content="Fraghead AI — Your Personal Perfume Oracle"/>
+<meta property="og:description" content="Weather-aware, budget-matched perfume picks with Middle Eastern alternatives. By Gurujyot Singh Jolly."/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon.png"/>
+<title>Fraghead AI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--p:#534AB7;--pd:#3C3489;--pl:#EEEDFE;--pk:#D4537E;--pkl:#FBEAF0;--al:#FAEEDA;--gl:#EAF3DE;--gd:#27500A;--bl:#E6F1FB;--bd:#185FA5;--txt:#1a1a2e;--muted:#6b6b8a;--bdr:#e0dff5;--card:#fff;--surface:#f5f3ff}
+@media(prefers-color-scheme:dark){:root{--txt:#ede9ff;--muted:#9590c5;--bdr:#312d58;--card:#1c1930;--surface:#141225;--pl:#252045;--pd:#b0aaee;--bl:#101b2e;--bd:#7baad4;--gl:#0f1e0f;--gd:#8fc97a;--al:#1e160a;--pkl:#2a1020}body{background:linear-gradient(135deg,#0f0d1a,#160d14,#0d0a06)!important}}
+body{font-family:'Inter',sans-serif;color:var(--txt);background:linear-gradient(135deg,#f5f3ff,#fdf0f5,#fff8f0);min-height:100vh;max-width:600px;margin:0 auto}
+.hero{text-align:center;padding:2.5rem 1.5rem 1.5rem;position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--bdr)}
+.o{position:absolute;border-radius:50%;filter:blur(55px);opacity:.13;pointer-events:none}
+.o1{width:280px;height:280px;background:#534AB7;top:-90px;left:-70px}
+.o2{width:240px;height:240px;background:#D4537E;top:-50px;right:-50px}
+.bsvg{display:block;margin:0 auto 12px;animation:fl 3.5s ease-in-out infinite;filter:drop-shadow(0 5px 16px rgba(83,74,183,.3))}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg)}}
+.sp{animation:spa 2s ease-in-out infinite}.sp:nth-child(2){animation-delay:.4s}.sp:nth-child(3){animation-delay:.8s}.sp:nth-child(4){animation-delay:1.2s}.sp:nth-child(5){animation-delay:1.6s}
+@keyframes spa{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;color:var(--pd);letter-spacing:-.5px;margin-bottom:4px}
+.hero h1 span{color:var(--pk)}
+.hero p{font-size:12px;color:var(--muted)}
+.pills{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.pill{padding:3px 11px;border-radius:20px;font-size:11px;border:1px solid var(--bdr);color:var(--muted);background:var(--card)}
+#ib{display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--p);color:#fff;padding:11px 16px;font-size:12px}
+#ib button{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-size:12px;cursor:pointer;font-family:'Inter',sans-serif}
+.how{background:var(--card);border:1.5px solid var(--bdr);border-radius:14px;padding:16px 18px;margin:1.25rem 1.25rem 0;font-size:13px;color:var(--muted);line-height:1.9}
+.how strong{display:block;font-size:14px;color:var(--txt);margin-bottom:8px;font-weight:500}
+.hw{display:flex;align-items:flex-start;gap:10px;margin-bottom:5px}
+.hn{width:20px;height:20px;border-radius:50%;background:var(--p);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.sbar{display:flex;align-items:center;max-width:380px;margin:1.25rem auto 1.5rem;padding:0 1rem}
+.sd{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border:1.5px solid var(--bdr);background:var(--card);color:var(--muted);transition:all .3s;flex-shrink:0}
+.sd.a{background:var(--p);border-color:var(--p);color:#fff;box-shadow:0 0 0 4px rgba(83,74,183,.15)}
+.sd.d{background:var(--pk);border-color:var(--pk);color:#fff}
+.sln{flex:1;height:1.5px;background:var(--bdr);transition:background .3s}
+.sln.d{background:var(--pk)}
+.wrap{padding:0 1.25rem 2rem}
+.pnl{display:none;animation:si .3s ease}.pnl.a{display:block}
+@keyframes si{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ph{text-align:center;margin-bottom:1.25rem}
+.ph h2{font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--pd);margin-bottom:4px}
+.ph p{font-size:12px;color:var(--muted);line-height:1.5}
+.og{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:1.25rem}
+.oc{border:1.5px solid var(--bdr);border-radius:14px;padding:12px 13px;cursor:pointer;background:var(--card);display:flex;align-items:center;gap:10px;transition:all .2s}
+.oc:hover,.oc.s{border-color:var(--p);background:var(--pl)}.oc.s{box-shadow:0 0 0 3px rgba(83,74,183,.12)}
+.oi{font-size:18px;flex-shrink:0}.ol{font-size:13px;font-weight:500}.os{font-size:10px;color:var(--muted);margin-top:1px}
+.cw{position:relative;margin-bottom:1.25rem}
+.ci{width:100%;padding:13px 14px 13px 42px;border:1.5px solid var(--bdr);border-radius:14px;font-size:15px;font-family:'Inter',sans-serif;background:var(--card);color:var(--txt);outline:none;transition:border-color .2s}
+.ci:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(83,74,183,.1)}
+.cion{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px}
+.mg{display:grid;gap:9px;margin-bottom:1.25rem}
+.mg.c2{grid-template-columns:1fr 1fr}.mg.c1{grid-template-columns:1fr}
+.mc{border:1.5px solid var(--bdr);border-radius:14px;padding:13px 14px;cursor:pointer;background:var(--card);display:flex;align-items:center;gap:11px;transition:all .2s}
+.mc:hover,.mc.s{border-color:var(--p);background:var(--pl)}.mc.s{box-shadow:0 0 0 3px rgba(83,74,183,.1)}
+.chk{width:17px;height:17px;min-width:17px;border-radius:4px;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;transition:all .2s}
+.mc.s .chk{background:var(--p);border-color:var(--p)}
+.mi{font-size:19px;flex-shrink:0}.ml{font-size:13px;font-weight:500}.ms{font-size:11px;color:var(--muted);margin-top:1px}
+.mt{margin-left:auto;font-size:10px;padding:3px 9px;border-radius:9px;font-weight:500;flex-shrink:0}
+.tg{background:var(--gl);color:var(--gd)}.tp{background:var(--pl);color:var(--pd)}.ta{background:var(--al);color:#633806}
+.son{background:var(--bl);border-radius:11px;padding:10px 13px;font-size:12px;color:var(--bd);margin-bottom:10px;line-height:1.5}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+.sc{border:1.5px solid var(--bdr);border-radius:13px;padding:12px 5px;cursor:pointer;background:var(--card);text-align:center;transition:all .2s}
+.sc:hover,.sc.s{border-color:var(--pk);background:var(--pkl)}
+.se{font-size:19px;margin-bottom:3px}.sl{font-size:11px;font-weight:500}
+.skp{width:100%;padding:11px;border-radius:13px;border:1.5px dashed var(--bdr);background:transparent;font-size:12px;color:var(--muted);cursor:pointer;margin-bottom:1.25rem;font-family:'Inter',sans-serif;transition:all .2s}
+.skp:hover,.skp.on{border-color:var(--p);color:var(--p);background:var(--pl)}
+.br{display:flex;gap:10px}
+.bbk{flex:0 0 auto;padding:13px 20px;border-radius:13px;border:1.5px solid var(--bdr);background:var(--card);color:var(--muted);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.bbk:hover{border-color:var(--p);color:var(--p)}
+.bnt{flex:1;padding:14px;border-radius:13px;border:none;background:var(--p);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+.bnt:disabled{opacity:.4;cursor:not-allowed}
+.bfn{flex:1;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--p),var(--pk));color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.2px}
+.bfn:disabled{opacity:.4;cursor:not-allowed}
+.ok{background:var(--gl);border:1.5px solid #639922;border-radius:14px;padding:18px;margin-top:1.25rem;text-align:center;font-size:13px;color:var(--gd);line-height:1.9}
+.ok strong{display:block;font-size:16px;margin-bottom:5px;font-weight:500}
+.arr{font-size:24px;display:block;margin-top:6px;animation:bo .9s ease-in-out infinite}
+@keyframes bo{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.sig{text-align:center;padding:3rem 1.5rem 2.5rem}
+.sig-line{height:1px;background:linear-gradient(90deg,transparent,var(--bdr),transparent);margin-bottom:2rem}
+.sn{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--pd);letter-spacing:.5px;margin-bottom:5px}
+.st{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.sd2{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:8px}
+.sq{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div id="ib">
+  <span>📱 Add Fraghead AI to your home screen</span>
+  <button onclick="installApp()">Install</button>
+</div>
+
+<div class="hero">
+  <div class="o o1"></div><div class="o o2"></div>
+  <svg class="bsvg" width="84" height="96" viewBox="0 0 84 96" xmlns="http://www.w3.org/2000/svg">
+    <circle class="sp" cx="70" cy="25" r="2.4" fill="#D4537E"/>
+    <circle class="sp" cx="76" cy="38" r="1.8" fill="#534AB7"/>
+    <circle class="sp" cx="66" cy="17" r="2" fill="#EF9F27"/>
+    <circle class="sp" cx="78" cy="48" r="1.4" fill="#D4537E"/>
+    <circle class="sp" cx="72" cy="56" r="1.1" fill="#8B7FD4"/>
+    <rect x="48" y="11" width="18" height="3.8" rx="1.9" fill="#534AB7"/>
+    <circle cx="66" cy="12.9" r="2.9" fill="#D4537E"/>
+    <rect x="31" y="15" width="17" height="10" rx="3.2" fill="#6B5FC7"/>
+    <rect x="29" y="6" width="21" height="10" rx="3.8" fill="#3C3489"/>
+    <rect x="32" y="8" width="7" height="6" rx="1.8" fill="#534AB7" opacity=".5"/>
+    <rect x="21" y="25" width="36" height="60" rx="10" fill="url(#bg)"/>
+    <rect x="25" y="31" width="5.5" height="38" rx="2.75" fill="rgba(255,255,255,.22)"/>
+    <rect x="25" y="41" width="27" height="29" rx="5.5" fill="rgba(255,255,255,.17)"/>
+    <rect x="29" y="47" width="19" height="2.4" rx="1.2" fill="rgba(255,255,255,.7)"/>
+    <rect x="31" y="52" width="15" height="2" rx="1" fill="rgba(255,255,255,.5)"/>
+    <rect x="29" y="57" width="19" height="1.6" rx=".8" fill="rgba(255,255,255,.35)"/>
+    <text x="39" y="69" font-size="11" text-anchor="middle" fill="rgba(255,255,255,.85)">✿</text>
+    <ellipse cx="39" cy="87" rx="16" ry="3.5" fill="#534AB7" opacity=".1"/>
+    <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B72D4"/>
+      <stop offset="50%" stop-color="#534AB7"/>
+      <stop offset="100%" stop-color="#3C3489"/>
+    </linearGradient></defs>
+  </svg>
+  <h1>Fraghead <span>AI</span></h1>
+  <p>Weather-aware · Budget-smart · Collector-grade recommendations</p>
+  <div class="pills">
+    <span class="pill">🌡️ Live weather</span>
+    <span class="pill">💰 Budget-matched</span>
+    <span class="pill">🕌 ME alternatives</span>
+  </div>
+</div>
+
+<div class="how">
+  <strong>How it works</strong>
+  <div class="hw"><div class="hn">1</div><span>Fill in your 5 preferences below</span></div>
+  <div class="hw"><div class="hn">2</div><span>Tap <strong>Find my perfume</strong> — it opens Claude AI with your full request already typed</span></div>
+  <div class="hw"><div class="hn">3</div><span>Press <strong>Enter</strong> in Claude — your full recommendation appears instantly</span></div>
+</div>
+
+<div class="sbar">
+  <div class="sd a" id="sd1">1</div><div class="sln" id="sl1"></div>
+  <div class="sd" id="sd2">2</div><div class="sln" id="sl2"></div>
+  <div class="sd" id="sd3">3</div><div class="sln" id="sl3"></div>
+  <div class="sd" id="sd4">4</div><div class="sln" id="sl4"></div>
+  <div class="sd" id="sd5">5</div>
+</div>
+
+<div class="wrap">
+
+<div class="pnl a" id="s1">
+  <div class="ph"><h2>What's the occasion?</h2><p>Tell us where you're headed — we'll match the scent to the moment</p></div>
+  <div class="og">
+    <div class="oc" data-v="Date night" onclick="sO(this)"><span class="oi">🌹</span><div><div class="ol">Date night</div><div class="os">First date or anniversary</div></div></div>
+    <div class="oc" data-v="Office / Work" onclick="sO(this)"><span class="oi">💼</span><div><div class="ol">Office / Work</div><div class="os">Professional, not overpowering</div></div></div>
+    <div class="oc" data-v="Wedding / Celebration" onclick="sO(this)"><span class="oi">💍</span><div><div class="ol">Wedding / Celebration</div><div class="os">Make an entrance</div></div></div>
+    <div class="oc" data-v="Casual day out" onclick="sO(this)"><span class="oi">☀️</span><div><div class="ol">Casual day out</div><div class="os">Easy, effortless, everyday</div></div></div>
+    <div class="oc" data-v="Formal / Gala" onclick="sO(this)"><span class="oi">🎩</span><div><div class="ol">Formal / Gala</div><div class="os">Power dressing, full stop</div></div></div>
+    <div class="oc" data-v="Travel" onclick="sO(this)"><span class="oi">✈️</span><div><div class="ol">Travel</div><div class="os">Flight, train or road trip</div></div></div>
+    <div class="oc" data-v="Brunch / Outing" onclick="sO(this)"><span class="oi">🥂</span><div><div class="ol">Brunch / Outing</div><div class="os">Weekend social energy</div></div></div>
+    <div class="oc" data-v="Night out / Party" onclick="sO(this)"><span class="oi">🎶</span><div><div class="ol">Night out / Party</div><div class="os">Something unforgettable</div></div></div>
+  </div>
+  <div class="br"><button class="bnt" id="n1" onclick="gS(2)" disabled>Continue →</button></div>
+</div>
+
+<div class="pnl" id="s2">
+  <div class="ph"><h2>Which city are you in?</h2><p>Mumbai humidity and Delhi dry heat need very different fragrances — we check live weather before recommending</p></div>
+  <div class="cw"><span class="cion">📍</span><input class="ci" id="cI" type="text" placeholder="e.g. Mumbai, Delhi, Bangalore, Pune..." oninput="cC()"/></div>
+  <div class="br"><button class="bbk" onclick="gS(1)">← Back</button><button class="bnt" id="n2" onclick="gS(3)" disabled>Continue →</button></div>
+</div>
+
+<div class="pnl" id="s3">
+  <div class="ph"><h2>When will you wear it?</h2><p>Select all that apply — we'll find something that works across your day</p></div>
+  <div class="mg c2">
+    <div class="mc" data-v="Early morning (6–9am)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">🌅</span><div><div class="ml">Early morning</div><div class="ms">6–9 am</div></div></div>
+    <div class="mc" data-v="Morning (9am–12pm)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">☀️</span><div><div class="ml">Morning</div><div class="ms">9am–12pm</div></div></div>
+    <div class="mc" data-v="Afternoon (12–5pm)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">🌤️</span><div><div class="ml">Afternoon</div><div class="ms">12–5 pm</div></div></div>
+    <div class="mc" data-v="Evening (5–9pm)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">🌆</span><div><div class="ml">Evening</div><div class="ms">5–9 pm</div></div></div>
+    <div class="mc" data-v="Night (9pm+)" onclick="tM(this,'t')"><div class="chk"></div><span class="mi">🌙</span><div><div class="ml">Night</div><div class="ms">9 pm+</div></div></div>
+  </div>
+  <div class="br"><button class="bbk" onclick="gS(2)">← Back</button><button class="bnt" id="n3" onclick="gS(4)" disabled>Continue →</button></div>
+</div>
+
+<div class="pnl" id="s4">
+  <div class="ph"><h2>Any scent preferences?</h2><p>Do you gravitate towards something — or shall we surprise you?</p></div>
+  <div class="son">💡 Entirely optional — pick what calls to you, or skip and let the AI decide.</div>
+  <div class="sg">
+    <div class="sc" data-v="Fresh & Aquatic" onclick="tSc(this)"><div class="se">🌊</div><div class="sl">Fresh</div></div>
+    <div class="sc" data-v="Floral" onclick="tSc(this)"><div class="se">🌸</div><div class="sl">Floral</div></div>
+    <div class="sc" data-v="Woody & Earthy" onclick="tSc(this)"><div class="se">🌲</div><div class="sl">Woody</div></div>
+    <div class="sc" data-v="Gourmand & Sweet" onclick="tSc(this)"><div class="se">🍫</div><div class="sl">Gourmand</div></div>
+    <div class="sc" data-v="Musky & Sensual" onclick="tSc(this)"><div class="se">🕯️</div><div class="sl">Musky</div></div>
+    <div class="sc" data-v="Spicy & Oriental" onclick="tSc(this)"><div class="se">🌶️</div><div class="sl">Spicy</div></div>
+    <div class="sc" data-v="Citrusy & Bright" onclick="tSc(this)"><div class="se">🍋</div><div class="sl">Citrusy</div></div>
+    <div class="sc" data-v="Green & Aromatic" onclick="tSc(this)"><div class="se">🌿</div><div class="sl">Green</div></div>
+  </div>
+  <button class="skp" id="skpBtn" onclick="tSk()">✦ No preference — let the AI choose for me</button>
+  <div class="br"><button class="bbk" onclick="gS(3)">← Back</button><button class="bnt" id="n4" onclick="gS(5)" disabled>Continue →</button></div>
+</div>
+
+<div class="pnl" id="s5">
+  <div class="ph"><h2>What's your budget?</h2><p>Select one or more — we'll cover all your options</p></div>
+  <div class="mg c1">
+    <div class="mc" data-v="₹3,000–₹5,000" onclick="tM(this,'b')"><div class="chk"></div><span class="mi">💚</span><div><div class="ml">₹3,000 – ₹5,000</div><div class="ms">Smart picks that punch above their price</div></div><span class="mt tg">Entry luxury</span></div>
+    <div class="mc" data-v="₹5,000–₹10,000" onclick="tM(this,'b')"><div class="chk"></div><span class="mi">💜</span><div><div class="ml">₹5,000 – ₹10,000</div><div class="ms">Full designer range, no compromises</div></div><span class="mt tp">Mid-range</span></div>
+    <div class="mc" data-v="₹10,000+" onclick="tM(this,'b')"><div class="chk"></div><span class="mi">👑</span><div><div class="ml">₹10,000 and above</div><div class="ms">Prestige houses, niche perfumery, no limits</div></div><span class="mt ta">Premium</span></div>
+  </div>
+  <div class="br">
+    <button class="bbk" onclick="gS(4)">← Back</button>
+    <button class="bfn" id="fB" onclick="find()" disabled>Find my perfect perfume ✦</button>
+  </div>
+  <div id="msg"></div>
+</div>
+
+</div>
+
+<div class="sig">
+  <div class="sig-line"></div>
+  <div class="sn">Gurujyot Singh Jolly</div>
+  <div class="st">Fraghead · Collector · Curator</div>
+  <div class="sd2"><span>🌹</span><span>Made with passion for the art of fragrance</span><span>🕌</span></div>
+  <div class="sq">"A great perfume is a biography of the soul."</div>
+</div>
+
+<script>
+var D={occ:'',city:'',times:[],scents:[],skip:false,budgets:[]},cur=1,dp=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('ib').style.display='flex';});
+function installApp(){if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;document.getElementById('ib').style.display='none';});}
+function gS(n){
+  document.getElementById('s'+cur).classList.remove('a');
+  document.getElementById('s'+n).classList.add('a');
+  for(var i=1;i<=5;i++){
+    var d=document.getElementById('sd'+i);
+    d.classList.remove('a','d');
+    if(i<n){d.classList.add('d');d.textContent='✓';}
+    else if(i===n)d.classList.add('a');
+    else d.textContent=i;
+    if(i<5)document.getElementById('sl'+i).classList.toggle('d',i<n);
+  }
+  cur=n;window.scrollTo({top:0,behavior:'smooth'});
 }
+function sO(el){document.querySelectorAll('#s1 .oc').forEach(function(c){c.classList.remove('s');});el.classList.add('s');D.occ=el.dataset.v;document.getElementById('n1').disabled=false;}
+function cC(){D.city=document.getElementById('cI').value.trim();document.getElementById('n2').disabled=D.city.length<2;}
+function tM(el,k){
+  el.classList.toggle('s');
+  var pid=k==='t'?'s3':'s5';
+  D[k==='t'?'times':'budgets']=Array.from(document.querySelectorAll('#'+pid+' .mc.s')).map(function(c){return c.dataset.v;});
+  document.getElementById(k==='t'?'n3':'fB').disabled=D[k==='t'?'times':'budgets'].length===0;
+}
+function tSc(el){
+  document.getElementById('skpBtn').classList.remove('on');D.skip=false;
+  el.classList.toggle('s');
+  D.scents=Array.from(document.querySelectorAll('#s4 .sc.s')).map(function(c){return c.dataset.v;});
+  document.getElementById('n4').disabled=(D.scents.length===0&&!D.skip);
+}
+function tSk(){
+  D.skip=!D.skip;document.getElementById('skpBtn').classList.toggle('on',D.skip);
+  if(D.skip){document.querySelectorAll('#s4 .sc').forEach(function(c){c.classList.remove('s');});D.scents=[];}
+  document.getElementById('n4').disabled=(D.scents.length===0&&!D.skip);
+}
+function find(){
+  var sp=D.skip||D.scents.length===0?'No preference — use your expert judgement':D.scents.join(', ');
+  document.getElementById('fB').disabled=true;
+  document.getElementById('msg').innerHTML='<div class="ok"><strong>✦ Opening Claude AI now!</strong>Your complete request is ready — just press Enter in the new tab that opens.<span class="arr">↓</span></div>';
+  var p='[FRAGHEAD_REQUEST]\n\nYou are a world-class master perfumer with 30 years of experience and a passionate collector who has tested over 5,000 fragrances. You write with warmth, precision, and deep expertise.\n\nSTEP 1: Use web_search to find today\'s ACTUAL weather and temperature in "'+D.city+'" right now.\nSTEP 2: Use web_search to find real, currently available fragrances on Indian sites (Nykaa, Sephora India, brand websites).\n\nUSER PROFILE:\n- Occasion: '+D.occ+'\n- City: '+D.city+'\n- Time(s) of day: '+D.times.join(', ')+'\n- Scent preference: '+sp+'\n- Budget: '+D.budgets.join(' and ')+' INR\n\nRULES:\n- All perfumes MUST be real and currently available in India\n- Designer picks MUST be within the stated budget\n- Factor in ACTUAL weather — heat amplifies heavy scents, humidity kills longevity\n- Middle Eastern alternatives must be available in India (Noon.com, Amazon India, local attar shops)\n- Be specific and expert — not generic\n\nFORMAT YOUR REPLY EXACTLY LIKE THIS:\n\n━━━━━━━━━━━━━━━━━━━━━━━\n⭐ STAR PICK\n━━━━━━━━━━━━━━━━━━━━━━━\n**[Name]** by [House]\nFamily: [x] | Season: [x]\nTop: [notes] | Heart: [notes] | Base: [notes]\nLongevity: [x hrs] | Sillage: [x] | Price: ₹[x]\n\n🎯 Why this: [One expert sentence — specific to occasion + city weather + time of day]\n🌡️ Weather today: [Actual weather you found + how it affects fragrance performance]\n🏛️ Collector tip: [One insider tip — batch year, reformulation, layering or application hack]\n\n━━━━━━━━━━━━━━━━━━━━━━━\n🛍️ 3 DESIGNER PICKS — '+D.budgets.join(' + ')+'\n━━━━━━━━━━━━━━━━━━━━━━━\n1. **[Name]** by [House] — ₹[price] | [Best time] | [Why it works for this person]\n2. **[Name]** by [House] — ₹[price] | [Best time] | [Why]\n3. **[Name]** by [House] — ₹[price] | [Best time] | [Why]\n\n━━━━━━━━━━━━━━━━━━━━━━━\n🕌 3 MIDDLE EASTERN ALTERNATIVES\nSame soul. Fraction of the price.\n━━━━━━━━━━━━━━━━━━━━━━━\n1. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA similarity + where to buy in India]\n2. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA + where to buy]\n3. **[Name]** by [House] — ₹[price] | Clone of [Designer] | [DNA + where to buy]';
+  window.open('https://claude.ai/new?q='+encodeURIComponent(p),'_blank');
+}
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+</script>
+</body>
+</html>
